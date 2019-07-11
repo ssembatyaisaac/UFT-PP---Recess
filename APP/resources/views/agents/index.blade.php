@@ -23,21 +23,26 @@
                                 <th scope="col">{{ __('First Name') }}</th>
                                 <th scope="col">{{ __('Last Name') }}</th>
                                 <th scope="col">{{ __('Gender') }}</th>
+                                <th scope="col">{{ __('district ID') }}</th>
+                                <th scope="col">{{ __('Agent Head ID') }}</th>
                                 <th scope="col"></th>
                             </thead>
+                            @foreach ($agents as $agent)
                             <tbody>
-                                @foreach ($agents as $agent)
+                                
                                     <tr>
                                         <td>{{ $agent->fName }}</td>
                                         <td>{{ $agent->lName }}</td>
                                         <td>{{ $agent->gender }}</td>
+                                        <td>{{ $agent->districtID}}</td>
+                                        <td>{{ $agent->agentHeadID}}</td>
                                         <td class="text-right">
-                                                <div class="dropdown">
+                                                  <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        @if (auth()->user()->id != $user->id)
+                                                        {{--  @if (auth()->agent()->id != $agent->id)
                                                             <form action="{{ route('agent.destroy', $agent) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
@@ -46,23 +51,23 @@
                                                                 <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this agent?") }}') ? this.parentElement.submit() : ''">
                                                                             {{ __('Delete') }}
                                                                 </button>
-                                                            </form>
-                                                        @else
-                                                            <a class="dropdown-item" href="{{ route('agent.edit') }}">{{ __('Edit') }}</a>
-                                                        @endif
+                                                            </form>  
+                                                        @else--}}
+                                                            <a class="dropdown-item" href="/agent/{{$agent->id}}/edit">{{ __('Edit') }}</a>
+                                                       {{--  @endif  --}}
                                                     </div>
-                                                </div>
+                                                </div>  
                                         </td>
                                     </tr>
-                                @endforeach
+                               @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
+                    {{--  <nav class="d-flex justify-content-end" aria-label="...">
                         {{ $agents->links() }}
-                    </nav>
+                    </nav>  --}}
                 </div>
             </div>
         </div>

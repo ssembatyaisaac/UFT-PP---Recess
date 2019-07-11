@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+//use App\Http\Requests\AgentRequest;
 use Illuminate\Http\Request;
 use DB;
 
@@ -16,7 +17,8 @@ class AgentsController extends Controller
     public function index(Agent $model)
     {
         //
-        return view('agents.index',['agents' => $model->paginate(15)]);
+        $agents =DB::select('select * from agents');
+        return view('agents.index')->with('agents',$agents);
     }
 
     /**
@@ -50,9 +52,8 @@ class AgentsController extends Controller
         $gender=$request->input('gender');
         $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender);
         DB::table('agents')->insert($data);
-        echo 'inserted';
+       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
         
-       
     }
 
     /**
@@ -74,7 +75,8 @@ class AgentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $agents = DB::select('select * from agents where id = ?', [$id]);
+        return view('agents.edit')->with('agents',$agents);
     }
 
     /**
@@ -86,7 +88,13 @@ class AgentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fName=$request->input('fName');
+        $lName=$request->input('lName');
+        $gender=$request->input('gender');
+        DB::update('update agents set fName= ?,lName= ?,gender =? WHERE id = ?', [$fName,$lName,$gender,$id]);
+        
+        return redirect()->route('agent.index')->withStatus('Agent updated successfully');
+        
     }
 
     /**

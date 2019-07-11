@@ -18,7 +18,7 @@
                     <p>{{ _('Agent') }}</p>
                 </a>
             </li>
-            <li>
+            {{--  <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
                     <span class="nav-link-text" >{{ __('Laravel Examples') }}</span>
@@ -42,7 +42,7 @@
                     </ul>
                 </div>
                 
-            </li>
+            </li>  --}}
             {{--  created for agents  --}}
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
@@ -56,20 +56,20 @@
                             <li @if ($pageSlug == 'agents') class="active " @endif>
                                 <a href="{{ route('agent.index')  }}">
                                     <i class="tim-icons icon-single-02"></i>
-                                    <p>{{ _('Agent Profile') }}</p>
+                                    <p>{{ _('Registered Agents') }}</p>
                                 </a>
                             </li>
                             <li @if ($pageSlug == 'agents') class="active " @endif>
                                 <a href="{{ route('agent.create')  }}">
                                     <i class="tim-icons icon-bullet-list-67"></i>
-                                    <p>{{ _('Agent Management') }}</p>
+                                    <p>{{ _('Register New') }}</p>
                                 </a>
                             </li>
                         </ul>
                     </div>    
 
             </li>
-            <li @if ($pageSlug == 'icons') class="active " @endif>
+            {{--  <li @if ($pageSlug == 'icons') class="active " @endif>
                 <a href="{{ route('pages.icons') }}">
                     <i class="tim-icons icon-atom"></i>
                     <p>{{ _('Icons') }}</p>
@@ -110,7 +110,7 @@
                     <i class="tim-icons icon-spaceship"></i>
                     <p>{{ _('Upgrade to PRO') }}</p>
                 </a>
-            </li>
+            </li>  --}}
         </ul>
     </div>
 </div>
