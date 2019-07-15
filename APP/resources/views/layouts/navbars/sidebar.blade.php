@@ -44,10 +44,37 @@
                 
             </li>  --}}
             {{--  created for agents  --}}
+
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
-                    <span class="nav-link-text" >{{ __('Agent Examples') }}</span>
+                    <span class="nav-link-text" >{{ __('Districts Center') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+
+                <div class="collapse show" id="laravel-examples">
+                        <ul class="nav pl-4">
+                            <li @if ($pageSlug == 'districts') class="active " @endif>
+                                <a href="{{ route('district.index')  }}">
+                                    <i class="tim-icons icon-align-center"></i>
+                                    <p>{{ _('Registered Districts') }}</p>
+                                </a>
+                            </li>
+                            <li @if ($pageSlug == 'districts') class="active " @endif>
+                                <a href="{{ route('district.create')  }}">
+                                    <i class="tim-icons icon-bullet-list-67"></i>
+                                    <p>{{ _('Register New') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>    
+
+            </li>
+
+            <li>
+                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                    <i class="fab fa-laravel" ></i>
+                    <span class="nav-link-text" >{{ __('Agents Center   ') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
 
@@ -69,6 +96,7 @@
                     </div>    
 
             </li>
+            
             {{--  <li @if ($pageSlug == 'icons') class="active " @endif>
                 <a href="{{ route('pages.icons') }}">
                     <i class="tim-icons icon-atom"></i>

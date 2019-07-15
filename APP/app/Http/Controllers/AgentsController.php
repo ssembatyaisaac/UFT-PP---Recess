@@ -7,6 +7,7 @@ use App\Agent;
 use Illuminate\Http\Request;
 use DB;
 
+
 class AgentsController extends Controller
 {
     /**
@@ -45,15 +46,47 @@ class AgentsController extends Controller
     //        // 'lName'=>'required',
     //      //   'gender'=>'required',
     //    // ]);
+    $x =1000000;
+    $districts =DB::select('select * from districts');
 
-         
-        $fName=$request->input('fName');
-        $lName=$request->input('lName');
-        $gender=$request->input('gender');
-        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender);
-        DB::table('agents')->insert($data);
-       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
-        
+    while($districts)
+    {
+        foreach($districts as $district){
+        $assigns=DB::select('select * from agents where districtID =?',[$district->id]);
+        if($assigns){
+           $runs=DB::table('agents')
+           ->select(DB::raw('count(districtID) as count,districtID'))
+           ->where('districtID','=',$district->id)
+           ->groupBy('districtID')
+           ->get();
+                foreach($runs as $run){
+                $x=$run->count;
+                $dist =$district->id;
+                                continue;
+                                    }
+                    }
+                    else{
+                        $fName=$request->input('fName');
+                        $lName=$request->input('lName');
+                        $gender=$request->input('gender');
+                        $dist =$district->id;
+                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
+                        DB::table('agents')->insert($data);
+                       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+                    }
+                                    }
+
+                                    $heads = DB::select('select * from agents where agentHeadID is NULL and districtID =?',[$dist]);
+                                    $fName=$request->input('fName');
+                                    $lName=$request->input('lName');
+                                    $gender=$request->input('gender');
+                                    $dist =$district->id;
+                                    foreach($heads as $head)
+                                    $aghead = $head->id; 
+                                    $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
+                                    DB::table('agents')->insert($data);
+                                    return redirect()->route('agent.index')->withStatus('Agent registered successfully');                             
+    }    
     }
 
     /**
@@ -88,11 +121,16 @@ class AgentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+             $this->validate($request,[
+            'fName'=>'required',
+           'lName'=>'required',
+           'gender'=>'required',
+           ]);
         $fName=$request->input('fName');
         $lName=$request->input('lName');
         $gender=$request->input('gender');
         DB::update('update agents set fName= ?,lName= ?,gender =? WHERE id = ?', [$fName,$lName,$gender,$id]);
-        
+    
         return redirect()->route('agent.index')->withStatus('Agent updated successfully');
         
     }
