@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::resource('agent','AgentsController');
+	Route::resource('district','DistrictsController');
 });
+
+ Route::view('/recommend','agents.recommend');
 
 

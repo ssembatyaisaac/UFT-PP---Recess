@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+//use App\Http\Requests\AgentRequest;
 use Illuminate\Http\Request;
 use DB;
 
@@ -16,7 +17,8 @@ class AgentsController extends Controller
     public function index(Agent $model)
     {
         //
-        return view('agents.index',['agents' => $model->paginate(15)]);
+        $agents =DB::select('select * from agents');
+        return view('agents.index')->with('agents',$agents);
     }
 
     /**
@@ -37,22 +39,21 @@ class AgentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
     //     $this->validate($request,[
     //         'fName'=>'required',
     //        // 'lName'=>'required',
     //      //   'gender'=>'required',
     //    // ]);
 
-         
+
         $fName=$request->input('fName');
         $lName=$request->input('lName');
         $gender=$request->input('gender');
         $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender);
         DB::table('agents')->insert($data);
-        echo 'inserted';
-        
-       
+       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+
     }
 
     /**
@@ -74,7 +75,8 @@ class AgentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $agents = DB::select('select * from agents where id = ?', [$id]);
+        return view('agents.edit')->with('agents',$agents);
     }
 
     /**
@@ -86,7 +88,13 @@ class AgentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fName=$request->input('fName');
+        $lName=$request->input('lName');
+        $gender=$request->input('gender');
+        DB::update('update agents set fName= ?,lName= ?,gender =? WHERE id = ?', [$fName,$lName,$gender,$id]);
+
+        return redirect()->route('agent.index')->withStatus('Agent updated successfully');
+
     }
 
     /**
@@ -99,4 +107,50 @@ class AgentsController extends Controller
     {
         //
     }
+
+    public function recommender(){
+        $x=0;
+        $recommend = DB::connection('mysql')->select("SELECT
+        member.fName,
+        member.lName,
+        count(enrollment.recommenderID) as total
+        from
+        member
+        left join enrollment on member.memberID = enrollment.recommenderID
+        group by member.memberID,member.fName,member.lName
+        having count(enrollment.recommenderID)>0");
+
+        return view('agent.recommend',compact('recommend','x'));
+    }
+
+    public function recommended()
+    {
+        if(isset($_POST['submit'])){//to run PHP script on submit
+            if(!empty($_POST['recommended'])){
+            // Loop to store and display values of individual checked checkbox.
+            foreach($_POST['recommended'] as $selected){
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "politicalparty";
+
+                $conn = mysqli_connect($servername,$username,$password,$dbname);
+
+                if(!$conn){
+                    die("Connection failed: " .mysqli_connect());
+                }
+                echo "Connected successfully";
+                echo '<br>';
+                }
+                $sql='SELECT fName, lName, gender from member where memberID='.$selected;
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $fName=$row['fName'];
+                $lName=$row['lName'];
+                $gender=$row['gender'];
+
+            }
+    }
+
+}
 }
