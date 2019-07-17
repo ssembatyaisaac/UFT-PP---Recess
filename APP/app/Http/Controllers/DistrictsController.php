@@ -14,8 +14,8 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-         $districts =DB::select('select * from districts');
-         return view('districts.index')->with('districts',$districts);        
+      $districts =DB::select('select * from districts');
+      return view('districts.index')->with('districts',$districts);
     }
 
     /**

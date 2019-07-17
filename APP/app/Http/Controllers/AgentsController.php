@@ -18,9 +18,9 @@ class AgentsController extends Controller
     public function index(Agent $model)
     {
         //
-        $agents =DB::select('select * from agents');
-        return view('agents.index')->with('agents',$agents);
-    }
+         $agents =DB::select('select * from agents');
+         return view('agents.index')->with('agents',$agents);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -46,11 +46,11 @@ class AgentsController extends Controller
     //        // 'lName'=>'required',
     //      //   'gender'=>'required',
     //    // ]);
-    $x =1000000;
+$x=100000;
     $districts =DB::select('select * from districts');
 
-    while($districts)
-    {
+     while($districts)
+     {
         foreach($districts as $district){
         $assigns=DB::select('select * from agents where districtID =?',[$district->id]);
         if($assigns){
@@ -60,35 +60,40 @@ class AgentsController extends Controller
            ->groupBy('districtID')
            ->get();
                 foreach($runs as $run){
-                $x=$run->count;
+                if($run->count<$x){
+                    $x=$run->count;
+                $dist =$district->id;   
+                }
+                  continue;
+            }     
+        }
+            else{
+                $fName=$request->input('fName');
+                $lName=$request->input('lName');
+                $gender=$request->input('gender');
                 $dist =$district->id;
-                                continue;
-                                    }
-                    }
-                    else{
-                        $fName=$request->input('fName');
-                        $lName=$request->input('lName');
-                        $gender=$request->input('gender');
-                        $dist =$district->id;
-                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
-                        DB::table('agents')->insert($data);
-                       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
-                    }
-                                    }
-
-                                    $heads = DB::select('select * from agents where agentHeadID is NULL and districtID =?',[$dist]);
-                                    $fName=$request->input('fName');
-                                    $lName=$request->input('lName');
-                                    $gender=$request->input('gender');
-                                    $dist =$district->id;
-                                    foreach($heads as $head)
-                                    $aghead = $head->id; 
-                                    $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
-                                    DB::table('agents')->insert($data);
-                                    return redirect()->route('agent.index')->withStatus('Agent registered successfully');                             
-    }    
-    }
-
+                $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
+                DB::table('agents')->insert($data);
+               return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+               break;
+                }                                                          
+    } 
+                $m=count($districts);
+                $heads = DB::select('select * from agents where agentHeadID is NULL and districtID= ?',[rand(1,$m)]);                  
+                foreach($heads as $head)
+                $fName=$request->input('fName');
+                $lName=$request->input('lName');
+                $gender=$request->input('gender');
+                $dist =$head->districtID;
+                $aghead = $head->id; 
+                $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
+                DB::table('agents')->insert($data);
+                return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+                break;
+                      
+            }  
+        } 
+  
     /**
      * Display the specified resource.
      *
