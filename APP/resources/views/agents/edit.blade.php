@@ -7,7 +7,7 @@
             <div class="card-header">
                 <h5 class="title">{{ _('Edit Agent') }}</h5>
             </div>
-            {{--  <form method="post" ,'action'=>['AgentsController@update',$agent->id] ,autocomplete="off">  --}}
+            
                 @foreach($agents as $agent)
                     <form method="post" action="{{ route('agent.update',$agent->id) }}" autocomplete="off">
                 <div class="card-body">
