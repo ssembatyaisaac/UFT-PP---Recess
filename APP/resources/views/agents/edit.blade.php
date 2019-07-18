@@ -26,12 +26,15 @@
                                 <input type="text" name="lName" class="form-control{{ $errors->has('lName') ? ' is-invalid' : '' }}" placeholder="{{ _('Last Name') }}">
                                 @include('alerts.feedback', ['field' => 'lName'])
                         </div>
-                    
-                        <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
-                            <label>{{ _('Gender') }}</label>
-                            <input type="text" name="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" placeholder="{{ _('Gender') }}">
-                            @include('alerts.feedback', ['field' => 'gender'])
-                        </div>
+                
+                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
+                                <select class="form-control" name="gender" required="required" id="input-gender" >
+                                   <option value="M">Male</option>
+                                   <option value="F">Female</option>
+                               </select>
+                               @include('alerts.feedback', ['field' => 'gender'])
+                           </div>
                         
                        
                 </div>

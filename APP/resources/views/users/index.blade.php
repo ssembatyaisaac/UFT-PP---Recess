@@ -42,7 +42,7 @@
                                                         @if (auth()->user()->id != $user->id)
                                                             <form action="{{ route('user.destroy', $user) }}" method="post">
                                                                 @csrf
-                                                                @method('delete')
+                                                                    @method('delete')
 
                                                                 <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
                                                                 <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
