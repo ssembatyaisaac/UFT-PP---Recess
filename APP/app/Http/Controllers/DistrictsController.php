@@ -14,14 +14,10 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-         $districts =DB::select('select * from districts');
-         return view('districts.index')->with('districts',$districts);        
-=======
-      $districts =DB::select('select * from districts');
-      return view('districts.index')->with('districts',$districts);
->>>>>>> 5572de25c3c04521328e6cc8d7928338d3e6213f
-    }
+      $districts =DB::select('select * from districts');    
+     return view('districts.index')->with('districts',$districts);
+     
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -89,7 +85,6 @@ class DistrictsController extends Controller
            ]);
         $districtName=$request->input('districtName');
         DB::update('update districts set districtName= ? WHERE id = ?', [$districtName,$id]);
-        
         return redirect()->route('district.index')->withStatus('District updated successfully');
     }
 

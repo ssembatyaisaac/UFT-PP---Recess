@@ -41,99 +41,77 @@ class AgentsController extends Controller
      */
     public function store(Request $request)
     {  
-    //     $this->validate($request,[
-    //         'fName'=>'required',
-    //        // 'lName'=>'required',
-    //      //   'gender'=>'required',
-    //    // ]);
-<<<<<<< HEAD
+        $this->validate($request,[
+            'fName'=>'required',
+           'lName'=>'required',
+           'gender'=>'required',
+       ]);
     $x =1000000;
     $districts =DB::select('select * from districts');
 
     while($districts)
     {
-=======
-$x=100000;
-    $districts =DB::select('select * from districts');
-
-     while($districts)
-     {
->>>>>>> 5572de25c3c04521328e6cc8d7928338d3e6213f
         foreach($districts as $district){
         $assigns=DB::select('select * from agents where districtID =?',[$district->id]);
         if($assigns){
+            //count number of districtID in agents table that match those in the districts table 
            $runs=DB::table('agents')
            ->select(DB::raw('count(districtID) as count,districtID'))
            ->where('districtID','=',$district->id)
            ->groupBy('districtID')
            ->get();
                 foreach($runs as $run){
-<<<<<<< HEAD
-                $x=$run->count;
-                $dist =$district->id;
-                                continue;
+                    $x=$run->count;
+                    $dist =$district->id;
+                    continue;
                                     }
                     }
-                    else{
+                else{
+                        //insert agenthead into agents and update number of agents in districts by 1
                         $fName=$request->input('fName');
                         $lName=$request->input('lName');
                         $gender=$request->input('gender');
                         $dist =$district->id;
                         $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
                         DB::table('agents')->insert($data);
-                       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+                        DB::update('update districts set NumberOfAgents = ? where id = ?', [1,$district->id]);
+                        return redirect()->route('agent.index')->withStatus('Agent registered successfully');
                     }
                                     }
 
-                                    $heads = DB::select('select * from agents where agentHeadID is NULL and districtID =?',[$dist]);
-                                    $fName=$request->input('fName');
-                                    $lName=$request->input('lName');
-                                    $gender=$request->input('gender');
-                                    $dist =$district->id;
-                                    foreach($heads as $head)
-                                    $aghead = $head->id; 
-                                    $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
-                                    DB::table('agents')->insert($data);
-                                    return redirect()->route('agent.index')->withStatus('Agent registered successfully');                             
+                    //get id of district with least members and insert agents into table using that id
+                    $min =DB::table('districts')->min('NumberOfAgents');
+                    $sel =DB::select('select id from districts where NumberOfAgents = ?',[$min]);
+                    foreach($sel as $se)    
+                        $heads = DB::select('select * from agents where agentHeadID is NULL and districtID= ?',[$se->id]);                  
+                    foreach($heads as $head){
+                        $fName=$request->input('fName');
+                        $lName=$request->input('lName');
+                        $gender=$request->input('gender');
+                        $dist =$se->id;
+                        $aghead = $head->id; 
+                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
+                        DB::table('agents')->insert($data);
+                    }
+
+                    //updates number of agents in districts table
+                    $dist =DB::select('select * from districts');
+                    foreach($dist as $dist){
+                        $runs=DB::table('agents')
+                        ->select(DB::raw('count(districtID) as count,districtID'))
+                        ->where('districtID','=',$dist->id)
+                        ->groupBy('districtID')
+                        ->get();
+                        foreach($runs as $ru){   
+                        DB::update('update districts set NumberOfAgents = ? where id = ?', [$ru->count,$dist->id]);
+                         }
+     }
+                    return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+                    break;
+                                               
     }    
     }
 
-=======
-                if($run->count<$x){
-                    $x=$run->count;
-                $dist =$district->id;   
-                }
-                  continue;
-            }     
-        }
-            else{
-                $fName=$request->input('fName');
-                $lName=$request->input('lName');
-                $gender=$request->input('gender');
-                $dist =$district->id;
-                $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
-                DB::table('agents')->insert($data);
-               return redirect()->route('agent.index')->withStatus('Agent registered successfully');
-               break;
-                }                                                          
-    } 
-                $m=count($districts);
-                $heads = DB::select('select * from agents where agentHeadID is NULL and districtID= ?',[rand(1,$m)]);                  
-                foreach($heads as $head)
-                $fName=$request->input('fName');
-                $lName=$request->input('lName');
-                $gender=$request->input('gender');
-                $dist =$head->districtID;
-                $aghead = $head->id; 
-                $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
-                DB::table('agents')->insert($data);
-                return redirect()->route('agent.index')->withStatus('Agent registered successfully');
-                break;
-                      
-            }  
-        } 
-  
->>>>>>> 5572de25c3c04521328e6cc8d7928338d3e6213f
     /**
      * Display the specified resource.
      *
