@@ -71,8 +71,9 @@ class AgentsController extends Controller
                         $fName=$request->input('fName');
                         $lName=$request->input('lName');
                         $gender=$request->input('gender');
+                        $signature=$request->input('signature');
                         $dist =$district->id;
-                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
+                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'signature'=>$signature);
                         DB::table('agents')->insert($data);
                         DB::update('update districts set NumberOfAgents = ? where id = ?', [1,$district->id]);
                         return redirect()->route('agent.index')->withStatus('Agent registered successfully');
@@ -88,9 +89,10 @@ class AgentsController extends Controller
                         $fName=$request->input('fName');
                         $lName=$request->input('lName');
                         $gender=$request->input('gender');
+                        $signature=$request->input('signature');
                         $dist =$se->id;
                         $aghead = $head->id; 
-                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
+                        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead,'signature'=>$signature);
                         DB::table('agents')->insert($data);
                     }
 
