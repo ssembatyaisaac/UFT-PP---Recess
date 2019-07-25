@@ -25,7 +25,7 @@
                                 <th scope="col">{{ __('Gender') }}</th>
                                 <th scope="col">{{ __('district ID') }}</th>
                                 <th scope="col">{{ __('Agent Head ID') }}</th>
-                                <th scope="col"></th>
+                            
                             </thead>
                             @foreach ($agents as $agent)
                             <tbody>

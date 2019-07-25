@@ -2,8 +2,7 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-mini">{{ _('BD') }}</a>
-            <a href="#" class="simple-text logo-normal">{{ _('UTF Dashboard') }}</a>
+            <a href="#" class="simple-text logo-normal">{{ _('U.T.F Political Party') }}</a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
@@ -12,12 +11,12 @@
                     <p>{{ _('Dashboard') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug == 'agents') class="active " @endif>
+            {{--  <li @if ($pageSlug == 'agents') class="active " @endif>
                 <a href="{{ route('agent.index') }}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>{{ _('Agent') }}</p>
                 </a>
-            </li>
+            </li>  --}}
             {{--  <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
