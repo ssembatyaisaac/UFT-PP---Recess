@@ -14,7 +14,7 @@
                         @csrf
                         @method('put')
                         @include('alerts.success')
-                        
+
                         <div class="form-group{{ $errors->has('fName') ? ' has-danger' : '' }}">
                                 <label>{{ _('First Name') }}</label>
                                 <input type="text" name="fName" class="form-control{{ $errors->has('fName') ? ' is-invalid' : '' }}" placeholder="{{ _('First Name') }}">
@@ -26,14 +26,14 @@
                                 <input type="text" name="lName" class="form-control{{ $errors->has('lName') ? ' is-invalid' : '' }}" placeholder="{{ _('Last Name') }}">
                                 @include('alerts.feedback', ['field' => 'lName'])
                         </div>
-                    
+
                         <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
                             <label>{{ _('Gender') }}</label>
                             <input type="text" name="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" placeholder="{{ _('Gender') }}">
                             @include('alerts.feedback', ['field' => 'gender'])
                         </div>
-                        
-                       
+
+
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>
@@ -42,7 +42,7 @@
             @endforeach
         </div>
 
-      
+
         </div>
-    </div>  
+    </div>
 @endsection

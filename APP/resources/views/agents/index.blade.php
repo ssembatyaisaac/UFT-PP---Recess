@@ -29,7 +29,6 @@
                             </thead>
                             @foreach ($agents as $agent)
                             <tbody>
-
                                     <tr>
                                         <td>{{ $agent->fName }}</td>
                                         <td>{{ $agent->lName }}</td>

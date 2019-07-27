@@ -7,6 +7,7 @@ use App\Agent;
 use Illuminate\Http\Request;
 use DB;
 
+
 class AgentsController extends Controller
 {
     /**
@@ -17,9 +18,9 @@ class AgentsController extends Controller
     public function index(Agent $model)
     {
         //
-        $agents =DB::select('select * from agents');
-        return view('agents.index')->with('agents',$agents);
-    }
+         $agents =DB::select('select * from agents');
+         return view('agents.index')->with('agents',$agents);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -45,16 +46,53 @@ class AgentsController extends Controller
     //        // 'lName'=>'required',
     //      //   'gender'=>'required',
     //    // ]);
+    $x=100000;
+    $districts =DB::select('select * from districts');
 
-
-        $fName=$request->input('fName');
-        $lName=$request->input('lName');
-        $gender=$request->input('gender');
-        $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender);
-        DB::table('agents')->insert($data);
-       return redirect()->route('agent.index')->withStatus('Agent registered successfully');
-
+     while($districts)
+     {
+        foreach($districts as $district){
+        $assigns=DB::select('select * from agents where districtID =?',[$district->id]);
+        if($assigns){
+           $runs=DB::table('agents')
+           ->select(DB::raw('count(districtID) as count,districtID'))
+           ->where('districtID','=',$district->id)
+           ->groupBy('districtID')
+           ->get();
+                foreach($runs as $run){
+                if($run->count<$x){
+                    $x=$run->count;
+                $dist =$district->id;
+                }
+                  continue;
+            }
+        }
+            else{
+                $fName=$request->input('fName');
+                $lName=$request->input('lName');
+                $gender=$request->input('gender');
+                $dist =$district->id;
+                $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
+                DB::table('agents')->insert($data);
+               return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+               break;
+                }
     }
+                $m=count($districts);
+                $heads = DB::select('select * from agents where agentHeadID is NULL and districtID= ?',[rand(1,$m)]);
+                foreach($heads as $head)
+                $fName=$request->input('fName');
+                $lName=$request->input('lName');
+                $gender=$request->input('gender');
+                $dist =$head->districtID;
+                $aghead = $head->id;
+                $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
+                DB::table('agents')->insert($data);
+                return redirect()->route('agent.index')->withStatus('Agent registered successfully');
+                break;
+
+            }
+        }
 
     /**
      * Display the specified resource.
@@ -109,48 +147,18 @@ class AgentsController extends Controller
     }
 
     public function recommender(){
-        $x=0;
-        $recommend = DB::connection('mysql')->select("SELECT
-        member.fName,
-        member.lName,
-        count(enrollment.recommenderID) as total
+        $recommend = DB::select('SELECT
+        a.id,
+        a.fName,
+        a.lName,
+        count(b.recomenderID) as total
         from
-        member
-        left join enrollment on member.memberID = enrollment.recommenderID
-        group by member.memberID,member.fName,member.lName
-        having count(enrollment.recommenderID)>0");
+        members a
+        left join members b on a.id = b.recomenderID
+        group by a.id,a.fName,a.lName
+        having count(b.recomenderID)>0');
 
-        return view('agent.recommend',compact('recommend','x'));
-    }
+        return view('agents.recommend',compact('recommend'));
+        }
 
-    public function recommended()
-    {
-        if(isset($_POST['submit'])){//to run PHP script on submit
-            if(!empty($_POST['recommended'])){
-            // Loop to store and display values of individual checked checkbox.
-            foreach($_POST['recommended'] as $selected){
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "politicalparty";
-
-                $conn = mysqli_connect($servername,$username,$password,$dbname);
-
-                if(!$conn){
-                    die("Connection failed: " .mysqli_connect());
-                }
-                echo "Connected successfully";
-                echo '<br>';
-                }
-                $sql='SELECT fName, lName, gender from member where memberID='.$selected;
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_assoc($result);
-                $fName=$row['fName'];
-                $lName=$row['lName'];
-                $gender=$row['gender'];
-
-            }
-    }
-
-}
 }
