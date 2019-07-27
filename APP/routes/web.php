@@ -17,6 +17,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home1', 'HomeController@funds1')->name('home1')->middleware('auth');
+Route::get('/home2', 'HomeController@enrollment')->name('home2')->middleware('auth');
+Route::get('/home3', 'HomeController@wellwishers')->name('home3')->middleware('auth');
+Route::resource('donor','HomeController');
+
+
 
 Route::group(['middleware' => 'auth'], function () {
 		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
@@ -34,9 +40,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::resource('agent','AgentsController');
-	Route::resource('district','DistrictsController');
+    Route::resource('district','DistrictsController');
+    Route::resource('rec','recommendcontroller');
+    Route::resource('pay','PaymentController');
 });
 
- Route::view('/recommend','agents.recommend');
+ Route::get('/recommend','AgentsController@recommender');
+ Route::get('/amount','PaymentController@amount');
+ Route::get('/payment','PaymentController@payment');
+ Route::get('delete/{id}','recommendcontroller@destroy');
 
 

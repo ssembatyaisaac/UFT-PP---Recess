@@ -19,23 +19,24 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('agent.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('rec.store') }}" autocomplete="off">
                             @csrf
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Members Recommended') }}</h6>
                             <div class="pl-lg-4">
                                 <table class="table tablesorter " id="">
                                     <thead class=" text-primary">
+                                        <th scope="col">{{ __('') }}</th>
                                         <th scope="col">{{ __('First Name') }}</th>
                                         <th scope="col">{{ __('Last Name') }}</th>
                                         <th scope="col">{{ __('Members Introduced') }}</th>
                                         <th scope="col"></th>
                                     </thead>
-                                    @foreach ($recommend as $agent)
+                                    @foreach ($recommend as $row)
                                     <tbody>
 
                                             <tr>
-                                                <td><input type='checkbox' name='recommended' value={{$row->memberID}}></td>
+                                                <td><input type='checkbox' name='recommended[]' value={{$row->id}}></td>
                                                 <td>{{$row->fName}}</td>
                                                 <td>{{$row->lName}}</td>
                                                 <td>{{$row->total}}</td>
