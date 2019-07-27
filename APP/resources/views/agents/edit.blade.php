@@ -26,6 +26,7 @@
                                 <input type="text" name="lName" class="form-control{{ $errors->has('lName') ? ' is-invalid' : '' }}" placeholder="{{ _('Last Name') }}">
                                 @include('alerts.feedback', ['field' => 'lName'])
                         </div>
+<<<<<<< HEAD
 
                         <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
                             <label>{{ _('Gender') }}</label>
@@ -34,6 +35,19 @@
                         </div>
 
 
+=======
+                
+                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
+                                <select class="form-control" name="gender" required="required" id="input-gender" >
+                                   <option value="M">Male</option>
+                                   <option value="F">Female</option>
+                               </select>
+                               @include('alerts.feedback', ['field' => 'gender'])
+                           </div>
+                        
+                       
+>>>>>>> 8dcc7381ee94e949b5cab0421ba37c1083536ae6
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>

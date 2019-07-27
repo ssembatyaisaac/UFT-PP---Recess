@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
 
 use Illuminate\Http\Request;
 
-class DistrictsController extends Controller
+class enrollmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,8 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-      $districts =DB::select('select * from districts');    
-     return view('districts.index')->with('districts',$districts);
-     
-     }
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +24,6 @@ class DistrictsController extends Controller
     public function create()
     {
         //
-        return view('districts.create');
     }
 
     /**
@@ -39,11 +35,6 @@ class DistrictsController extends Controller
     public function store(Request $request)
     {
         //
-        $districtName=$request->input('districtName');
-        
-        $data=array('districtName'=>$districtName);
-        DB::table('districts')->insert($data);
-       return redirect()->route('district.index')->withStatus('District registered successfully');
     }
 
     /**
@@ -66,8 +57,6 @@ class DistrictsController extends Controller
     public function edit($id)
     {
         //
-        $districts = DB::select('select * from districts where id = ?', [$id]);
-        return view('districts.edit')->with('districts',$districts);
     }
 
     /**
@@ -80,12 +69,6 @@ class DistrictsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,[
-            'districtName'=>'required',
-           ]);
-        $districtName=$request->input('districtName');
-        DB::update('update districts set districtName= ? WHERE id = ?', [$districtName,$id]);
-        return redirect()->route('district.index')->withStatus('District updated successfully');
     }
 
     /**

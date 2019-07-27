@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label>{{ __('Confirm New Password') }}</label>
-                            <input type="password" name="password_confirmation" class="form-control" placeholder="{{ __('Confirm New Password') }}" value="" required>
+                            <input type="  h   " name="password_confirmation" class="form-control" placeholder="{{ __('Confirm New Password') }}" value="" required>
                         </div>
                     </div>
                     <div class="card-footer">

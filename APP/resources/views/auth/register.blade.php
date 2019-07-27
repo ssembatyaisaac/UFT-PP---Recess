@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-5 ml-auto">
-            <div class="info-area info-horizontal mt-5">
+        {{--<div class="col-md-5 ml-auto">
+             <div class="info-area info-horizontal mt-5">
                 <div class="icon icon-warning">
                     <i class="tim-icons icon-wifi"></i>
                 </div>
@@ -13,8 +13,8 @@
                         {{ _('We\'ve created the marketing campaign of the website. It was a very interesting collaboration.') }}
                     </p>
                 </div>
-            </div>
-            <div class="info-area info-horizontal">
+            </div> 
+             <div class="info-area info-horizontal">
                 <div class="icon icon-primary">
                     <i class="tim-icons icon-triangle-right-17"></i>
                 </div>
@@ -34,9 +34,9 @@
                     <p class="description">
                         {{ _('There is also a Fully Customizable CMS Admin Dashboard for this product.') }}
                     </p>
-                </div>
+                </div> 
             </div>
-        </div>
+        </div>--}}
         <div class="col-md-7 mr-auto">
             <div class="card card-register card-white">
                 <div class="card-header">

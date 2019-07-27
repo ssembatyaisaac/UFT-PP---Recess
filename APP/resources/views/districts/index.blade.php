@@ -35,17 +35,17 @@
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        {{--  @if (auth()->agent()->id != $agent->id)
-                                                            <form action="{{ route('agent.destroy', $agent) }}" method="post">
+                                                        {{--  @if (auth()->agent()->id != $agent->id)--}}
+                                                            <form action="{{ route('district.destroy', $district->id) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
 
-                                                                <a class="dropdown-item" href="{{ route('agent.edit', $agent) }}">{{ __('Edit') }}</a>
-                                                                <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this agent?") }}') ? this.parentElement.submit() : ''">
+                                                                <a class="dropdown-item" href="{{ route('district.edit', $district->id) }}">{{ __('Edit') }}</a>
+                                                                <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this district?") }}') ? this.parentElement.submit() : ''">
                                                                             {{ __('Delete') }}
                                                                 </button>
                                                             </form>  
-                                                        @else--}}
+                                                        {{--  @else  --}}
                                                             <a class="dropdown-item" href="/district/{{$district->id}}/edit">{{ __('Edit') }}</a>
                                                        {{--  @endif  --}}
                                                     </div>
