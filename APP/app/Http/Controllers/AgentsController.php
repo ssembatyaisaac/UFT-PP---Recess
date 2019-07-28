@@ -146,7 +146,6 @@ class AgentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
              $this->validate($request,[
             'fName'=>'required',
            'lName'=>'required',
@@ -159,13 +158,6 @@ class AgentsController extends Controller
         $signature=$request->input('signature');
         DB::update('update agents set fName= ?,lName= ?,gender =?,signature=? WHERE id = ?', [$fName,$lName,$gender,$signature,$id]);
     
-=======
-        $fName=$request->input('fName');
-        $lName=$request->input('lName');
-        $gender=$request->input('gender');
-        DB::update('update agents set fName= ?,lName= ?,gender =? WHERE id = ?', [$fName,$lName,$gender,$id]);
-
->>>>>>> 98804461d6ae8f34f29e8a1ae3ca758d64fbd3be
         return redirect()->route('agent.index')->withStatus('Agent updated successfully');
 
     }
