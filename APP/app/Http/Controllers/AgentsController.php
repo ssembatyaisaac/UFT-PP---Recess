@@ -150,11 +150,13 @@ class AgentsController extends Controller
             'fName'=>'required',
            'lName'=>'required',
            'gender'=>'required',
+           'signature'=>'required',
            ]);
         $fName=$request->input('fName');
         $lName=$request->input('lName');
         $gender=$request->input('gender');
-        DB::update('update agents set fName= ?,lName= ?,gender =? WHERE id = ?', [$fName,$lName,$gender,$id]);
+        $signature=$request->input('signature');
+        DB::update('update agents set fName= ?,lName= ?,gender =?,signature=? WHERE id = ?', [$fName,$lName,$gender,$signature,$id]);
     
         return redirect()->route('agent.index')->withStatus('Agent updated successfully');
         
