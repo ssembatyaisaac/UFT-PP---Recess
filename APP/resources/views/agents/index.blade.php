@@ -29,7 +29,6 @@
                             </thead>
                             @foreach ($agents as $agent)
                             <tbody>
-                                
                                     <tr>
                                         <td>{{ $agent->fName }}</td>
                                         <td>{{ $agent->lName }}</td>
@@ -51,12 +50,12 @@
                                                                 <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this agent?") }}') ? this.parentElement.submit() : ''">
                                                                             {{ __('Delete') }}
                                                                 </button>
-                                                            </form>  
+                                                            </form>
                                                         @else--}}
                                                             <a class="dropdown-item" href="/agent/{{$agent->id}}/edit">{{ __('Edit') }}</a>
                                                        {{--  @endif  --}}
                                                     </div>
-                                                </div>  
+                                                </div>
                                         </td>
                                     </tr>
                                @endforeach

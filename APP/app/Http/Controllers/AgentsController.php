@@ -40,7 +40,7 @@ class AgentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
         $this->validate($request,[
             'fName'=>'required',
            'lName'=>'required',
@@ -54,7 +54,7 @@ class AgentsController extends Controller
         foreach($districts as $district){
         $assigns=DB::select('select * from agents where districtID =?',[$district->id]);
         if($assigns){
-            //count number of districtID in agents table that match those in the districts table 
+            //count number of districtID in agents table that match those in the districts table
            $runs=DB::table('agents')
            ->select(DB::raw('count(districtID) as count,districtID'))
            ->where('districtID','=',$district->id)
@@ -83,15 +83,15 @@ class AgentsController extends Controller
                     //get id of district with least members and insert agents into table using that id
                     $min =DB::table('districts')->min('NumberOfAgents');
                     $sel =DB::select('select id from districts where NumberOfAgents = ?',[$min]);
-                    foreach($sel as $se)    
-                        $heads = DB::select('select * from agents where agentHeadID is NULL and districtID= ?',[$se->id]);                  
+                    foreach($sel as $se)
+                        $heads = DB::select('select * from agents where agentHeadID is NULL and districtID= ?',[$se->id]);
                     foreach($heads as $head){
                         $fName=$request->input('fName');
                         $lName=$request->input('lName');
                         $gender=$request->input('gender');
                         $signature=$request->input('signature');
                         $dist =$se->id;
-                        $aghead = $head->id; 
+                        $aghead = $head->id;
                         $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead,'signature'=>$signature);
                         DB::table('agents')->insert($data);
                     }
@@ -104,14 +104,14 @@ class AgentsController extends Controller
                         ->where('districtID','=',$dist->id)
                         ->groupBy('districtID')
                         ->get();
-                        foreach($runs as $ru){   
+                        foreach($runs as $ru){
                         DB::update('update districts set NumberOfAgents = ? where id = ?', [$ru->count,$dist->id]);
                          }
      }
                     return redirect()->route('agent.index')->withStatus('Agent registered successfully');
                     break;
-                                               
-    }    
+
+    }
     }
 
     /**
@@ -146,6 +146,7 @@ class AgentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
              $this->validate($request,[
             'fName'=>'required',
            'lName'=>'required',
@@ -158,8 +159,15 @@ class AgentsController extends Controller
         $signature=$request->input('signature');
         DB::update('update agents set fName= ?,lName= ?,gender =?,signature=? WHERE id = ?', [$fName,$lName,$gender,$signature,$id]);
     
+=======
+        $fName=$request->input('fName');
+        $lName=$request->input('lName');
+        $gender=$request->input('gender');
+        DB::update('update agents set fName= ?,lName= ?,gender =? WHERE id = ?', [$fName,$lName,$gender,$id]);
+
+>>>>>>> 98804461d6ae8f34f29e8a1ae3ca758d64fbd3be
         return redirect()->route('agent.index')->withStatus('Agent updated successfully');
-        
+
     }
 
     /**
@@ -172,4 +180,20 @@ class AgentsController extends Controller
     {
         //
     }
+
+    public function recommender(){
+        $recommend = DB::select('SELECT
+        a.id,
+        a.fName,
+        a.lName,
+        count(b.recomenderID) as total
+        from
+        members a
+        left join members b on a.id = b.recomenderID
+        group by a.id,a.fName,a.lName
+        having count(b.recomenderID)>0');
+
+        return view('agents.recommend',compact('recommend'));
+        }
+
 }
