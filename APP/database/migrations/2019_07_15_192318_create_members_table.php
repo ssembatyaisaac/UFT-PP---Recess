@@ -18,8 +18,11 @@ class CreateMembersTable extends Migration
             $table->string('fName',25);
             $table->string('lName',25);
             $table->char('gender',1);
+            $table->date('dateOfEnrollment');
             $table->unsignedBigInteger('agentID',false)->nullable(true);
+            $table->unsignedBigInteger('recommenderID',false)->nullable(true);
             $table->foreign('agentID')->references('id')->on('agents');
+            $table->foreign('recommenderID')->references('id')->on('members');
             $table->timestamps();
         });
     }

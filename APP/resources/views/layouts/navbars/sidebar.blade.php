@@ -36,7 +36,7 @@
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>{{ _('Agent') }}</p>
                 </a>
-            </li>  --}}
+            </li>
             {{--  <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
@@ -144,7 +144,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                </div>
+                
 
             </li>
 

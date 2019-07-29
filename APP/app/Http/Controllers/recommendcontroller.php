@@ -67,6 +67,7 @@ class recommendcontroller extends Controller
                     $dist =$district->id;
                     $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist);
                     DB::table('agents')->insert($data);
+                    DB::update('UPDATE members SET recomenderID=NULL WHERE recomenderID ='.$selected);
                     DB::delete('DELETE from members where id ='.$selected);
                     return redirect()->route('agent.index')->withStatus('Agent registered successfully');
                 break;
@@ -79,6 +80,7 @@ class recommendcontroller extends Controller
                         $aghead = $head->id;
                         $data=array('fName'=>$fName,'lName'=>$lName,'gender'=>$gender,'districtID'=>$dist,'agentHeadID'=>$aghead);
                         DB::table('agents')->insert($data);
+                        DB::update('UPDATE members SET recomenderID=NULL WHERE recomenderID ='.$selected);
                         DB::delete('DELETE from members where id ='.$selected);
                         return redirect()->route('agent.index')->withStatus('Agent registered successfully');
                         break;
