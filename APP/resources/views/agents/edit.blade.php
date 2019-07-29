@@ -45,6 +45,12 @@
                                </select>
                                @include('alerts.feedback', ['field' => 'gender'])
                            </div>
+
+                           <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-name">{{ __('Signature') }}</label>
+                                <input type="text" name="signature" id="input-signature" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Signature') }}" value="{{ old('Signature') }}" required autofocus>
+                                @include('alerts.feedback', ['field' => 'signature'])
+                            </div>   
                         
                        
 >>>>>>> 8dcc7381ee94e949b5cab0421ba37c1083536ae6

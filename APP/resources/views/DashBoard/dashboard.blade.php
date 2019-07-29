@@ -11,7 +11,7 @@
                             <h5 class="card-category">funds per month</h5>
                             <h2 class="card-title">Column graph</h2>
                         </div>
-                        <div class="col-sm-6">
+                        {{-- <div class="col-sm-6">
                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                             <label class="btn btn-sm btn-primary btn-simple active" id="0">
                                 <input type="radio" name="options" checked>
@@ -35,7 +35,7 @@
                                 </span>
                             </label>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-body">
