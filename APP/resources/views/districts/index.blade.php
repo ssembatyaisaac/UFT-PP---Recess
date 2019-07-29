@@ -22,6 +22,7 @@
                             <thead class=" text-primary">
                                 <th scope="col">{{ __('District ID') }}</th>
                                 <th scope="col">{{ __('District Name') }}</th>
+                                <th scope='col>'>{{ __('Number Of Agents') }}</th>
                             </thead>
                             @foreach ($districts as $district)
                             <tbody>
@@ -29,6 +30,7 @@
                                     <tr>
                                         <td>{{ $district->id }}</td>
                                         <td>{{ $district->districtName }}</td>
+                                        <td>{{ $district->NumberOfAgents }}</td>
                                         <td class="text-right">
                                                   <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
