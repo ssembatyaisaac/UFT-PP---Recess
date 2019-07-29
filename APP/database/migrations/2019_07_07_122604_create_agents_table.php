@@ -20,9 +20,10 @@ class CreateAgentsTable extends Migration
             $table->string('gender',5);
             $table->unsignedBigInteger('agentHeadID',false)->nullable(true);
             $table->unsignedBigInteger('districtID',false)->nullable(true);
-            $table->string('signature',1)->nullable(true);
+            $table->string('signature',1);
             $table->timestamps();
             $table->foreign('districtID')->references('id')->on('districts');
+            $table->foreign('agentHeadID')->references('id')->on('agents');
         });
     }
 
