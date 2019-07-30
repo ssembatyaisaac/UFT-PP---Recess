@@ -13,11 +13,14 @@
                 <div class="card-body">
                         @csrf
                         @method('put')
-                        @include('alerts.success')
+                        @include('alerts.success') 
 
                         <div class="form-group{{ $errors->has('fName') ? ' has-danger' : '' }}">
                                 <label>{{ _('First Name') }}</label>
-                                <input type="text" name="fName" class="form-control{{ $errors->has('fName') ? ' is-invalid' : '' }}" placeholder="{{ _('First Name') }}">
+                                <input type="text" name="fName" er@update',$agent->id] ,autocomplete="off">  --}}
+                                @foreach($agents as $agent)
+                                    <form method="post" action="{{ route('agent.update',$agent->id) }}" autocomplete="off">
+                                <div class="card-body">class="form-control{{ $errors->has('fName') ? ' is-invalid' : '' }}" placeholder="{{ _('First Name') }}">
                                 @include('alerts.feedback', ['field' => 'fName'])
                         </div>
 
