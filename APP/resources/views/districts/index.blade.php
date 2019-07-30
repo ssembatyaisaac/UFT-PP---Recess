@@ -22,6 +22,7 @@
                             <thead class=" text-primary">
                                 <th scope="col">{{ __('District ID') }}</th>
                                 <th scope="col">{{ __('District Name') }}</th>
+                                <th scope='col>'>{{ __('Number Of Agents') }}</th>
                             </thead>
                             @foreach ($districts as $district)
                             <tbody>
@@ -29,13 +30,15 @@
                                     <tr>
                                         <td>{{ $district->id }}</td>
                                         <td>{{ $district->districtName }}</td>
+                                        <td>{{ $district->NumberOfAgents }}</td>
                                         <td class="text-right">
                                                   <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
+                                                        
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        {{--  @if (auth()->agent()->id != $agent->id)--}}
+                                                        {{--  @if (auth()->agent()->id != $agent->id)
                                                             <form action="{{ route('district.destroy', $district->id) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
@@ -47,6 +50,7 @@
                                                             </form>  
                                                         {{--  @else  --}}
                                                             <a class="dropdown-item" href="/district/{{$district->id}}/edit">{{ __('Edit') }}</a>
+                                                            <a class="dropdown-item" href="/Hierachy/{{$district->id}}show">{{ __('View Hierachy') }}</a>
                                                        {{--  @endif  --}}
                                                     </div>
                                                 </div>  

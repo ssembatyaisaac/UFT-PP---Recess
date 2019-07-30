@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::resource('agent','AgentsController');
+	Route::resource('Hierachy','HierachyController');
     Route::resource('district','DistrictsController');
     Route::resource('rec','recommendcontroller');
     Route::resource('pay','PaymentController');
@@ -54,5 +55,6 @@ Route::group(['middleware' => 'auth'], function () {
  Route::get('/members', function () {
     return view('members.index');
 });
+
 
 
