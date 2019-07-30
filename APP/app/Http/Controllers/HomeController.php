@@ -23,14 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $funds = DB::select('select amountPaid, MONTH(dateOfPayment) as month from funds');
+        $funds = DB::select('select amountPaid, MONTH(dateOfPayment) as month from donors');
         return view('DashBoard.dashboard')->with('funds', $funds);
     }
 
 
     public function funds1()
     {
-        $funds = DB::select('select amountPaid, MONTH(dateOfPayment) as month from funds');
+        $funds = DB::select('select amountPaid, MONTH(dateOfPayment) as month from donors');
         return view('DashBoard.home1')->with('funds', $funds);
     }
 
