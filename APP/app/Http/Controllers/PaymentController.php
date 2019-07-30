@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $funds=DB::select('select * from funds');
+        $funds=DB::select('select * from donors');
         return view('payments.index')->with('funds',$funds);
     }
 
@@ -42,7 +42,7 @@ class PaymentController extends Controller
             $amount =$request->input('amountPaid');
             $date=$request->input('dateOfPayment');
             $data=array('donorName'=>$Name,'gender'=>$gender,'amountPaid'=>$amount,'dateOfPayment'=>$date);
-            DB::table('funds')->insert($data);
+            DB::table('donors')->insert($data);
             return redirect()->route('pay.index')->withStatus('Thank you for your support');
 
     }
