@@ -43,11 +43,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('district','DistrictsController');
     Route::resource('rec','recommendcontroller');
     Route::resource('pay','PaymentController');
+    Route::resource('members','MembersController');
 });
 
  Route::get('/recommend','AgentsController@recommender');
  Route::get('/amount','PaymentController@amount');
  Route::get('/payment','PaymentController@payment');
  Route::get('delete/{id}','recommendcontroller@destroy');
+
+ Route::get('/members', function () {
+    return view('members.index');
+});
 
 

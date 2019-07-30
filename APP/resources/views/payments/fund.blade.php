@@ -22,9 +22,14 @@
                         <h6 class="heading-small text-muted mb-4">{{ __('Donor information') }}</h6>
                         <div class="pl-lg-4">
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-name">{{ __('Donor Name') }}</label>
-                                <input type="text" name="donorName" id="input-donorName" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Donor Name') }}" value="{{ old('donorName') }}" required autofocus>
+                                <label class="form-control-label" for="input-name">{{ __('Donor First Name') }}</label>
+                                <input type="text" name="fName" id="input-fName" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Donor First Name') }}" value="{{ old('fName') }}" required autofocus>
                                 @include('alerts.feedback', ['field' => 'fName'])
+                            </div>
+                            <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-name">{{ __('Donor Last Name') }}</label>
+                                <input type="text" name="lName" id="input-lName" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Donor Last Name') }}" value="{{ old('lName') }}" required autofocus>
+                                @include('alerts.feedback', ['field' => 'lName'])
                             </div>
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>

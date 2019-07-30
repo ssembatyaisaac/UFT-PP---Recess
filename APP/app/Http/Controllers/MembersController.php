@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
-class paymentController extends Controller
+class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class paymentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +35,15 @@ class paymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $month = $request->input('month');
+        $year = $request->input('year');
+
+        $donors = DB::select('SELECT members.id, members.fName, members.lName,
+        members.agentID, agents.districtID
+        from members
+        LEFT JOIN agents on members.agentID = agents.id where
+        MONTH(dateOfEnrollment) ='.$month.' && YEAR(dateOfEnrollment)='.$year);
+        return view('members.show')->with('donors', $donors);
     }
 
     /**

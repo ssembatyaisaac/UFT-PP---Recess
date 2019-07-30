@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $funds=DB::select('select * from funds');
+        $funds=DB::select('select * from donors');
         return view('payments.index')->with('funds',$funds);
     }
 
@@ -37,12 +37,13 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-            $Name=$request->input('donorName');
+            $fName=$request->input('fName');
+            $lName=$request->input('lName');
             $gender=$request->input('gender');
             $amount =$request->input('amountPaid');
             $date=$request->input('dateOfPayment');
-            $data=array('donorName'=>$Name,'gender'=>$gender,'amountPaid'=>$amount,'dateOfPayment'=>$date);
-            DB::table('funds')->insert($data);
+            $data=array('fName'=>$fName, 'lName'=>$lName,'gender'=>$gender,'amountPaid'=>$amount,'dateOfPayment'=>$date);
+            DB::table('donors')->insert($data);
             return redirect()->route('pay.index')->withStatus('Thank you for your support');
 
     }
@@ -83,7 +84,7 @@ class PaymentController extends Controller
             'donorName'=>'required',
            ]);
         $donorName=$request->input('donorName');
-        DB::update('update funds set donorName= ? WHERE id = ?', [$donorName,$id]);
+        DB::update('UPDATE donors set donorName= ? WHERE id = ?', [$donorName,$id]);
 
         return redirect()->route('pay.index')->withStatus('District updated successfully');
     }
@@ -102,7 +103,7 @@ class PaymentController extends Controller
     public function amount()
     {
         $amount = DB::select('SELECT sum(amountPaid) as amount
-        from funds where
+        from donors where
         month(dateOfPayment)=month(current_date()) &&
         year(dateOfPayment)=year(current_date())');
 

@@ -1,4 +1,4 @@
-@extends('layouts.app',['pageSlug' => 'districts'])
+@extends('layouts.app',['pageSlug' => 'members'])
 
 @section('content')
 <div class="row">
@@ -7,10 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">{{ __('District') }}</h4>
-                        </div>
-                        <div class="col-4 text-right">
-                            <a href="{{ route('pay.create') }}" class="btn btn-sm btn-primary">{{ __('Add Funds') }}</a>
+                            <h4 class="card-title">{{ __('Donors') }}</h4>
                         </div>
                     </div>
                 </div>
@@ -20,7 +17,8 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">{{ __('Donor Name') }}</th>
+                                <th scope="col">{{ __('Donor First Name') }}</th>
+                                <th scope="col">{{ __('Donor Last Name') }}</th>
                                 <th scope="col">{{ __('Amount Paid') }}</th>
                                 <th scope="col">{{ __('Date Of Payment') }}</th>
                             </thead>
@@ -28,7 +26,8 @@
                             <tbody>
 
                                     <tr>
-                                        <td>{{ $row->donorName }}</td>
+                                        <td>{{ $row->fName }}</td>
+                                        <td>{{ $row->lName }}</td>
                                         <td>{{ $row->amountPaid }}</td>
                                         <td>{{ $row->dateOfPayment }}</td>
                                         <td class="text-right">

@@ -125,6 +125,26 @@
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
+                    <span class="nav-link-text" >{{ __('Members') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+
+                <div class="collapse show" id="laravel-examples">
+                        <ul class="nav pl-4">
+                            <li @if ($pageSlug == 'members') class="active " @endif>
+                                <a href="/members">
+                                    <i class="tim-icons icon-align-center"></i>
+                                    <p>{{ _('Members Enrolled') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                </div>
+
+
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                    <i class="fab fa-laravel" ></i>
                     <span class="nav-link-text" >{{ __('Funds') }}</span>
                     <b class="caret mt-1"></b>
                 </a>

@@ -157,7 +157,7 @@ class AgentsController extends Controller
         $gender=$request->input('gender');
         $signature=$request->input('signature');
         DB::update('update agents set fName= ?,lName= ?,gender =?,signature=? WHERE id = ?', [$fName,$lName,$gender,$signature,$id]);
-    
+
         return redirect()->route('agent.index')->withStatus('Agent updated successfully');
 
     }
@@ -178,12 +178,12 @@ class AgentsController extends Controller
         a.id,
         a.fName,
         a.lName,
-        count(b.recomenderID) as total
+        count(b.recommenderID) as total
         from
         members a
-        left join members b on a.id = b.recomenderID
+        left join members b on a.id = b.recommenderID
         group by a.id,a.fName,a.lName
-        having count(b.recomenderID)>0');
+        having count(b.recommenderID)>0');
 
         return view('agents.recommend',compact('recommend'));
         }
