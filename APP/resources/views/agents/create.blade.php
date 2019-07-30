@@ -31,10 +31,20 @@
                                 <input type="text" name="lName" id="input-lName" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Last Name') }}" value="{{ old('lName') }}" required autofocus>
                                 @include('alerts.feedback', ['field' => 'lName'])
                             </div>
+                            
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
-                                <input type="text" name="gender" id="input-gender" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Gender') }}" value="{{ old('gender') }}" required autofocus>
-                                @include('alerts.feedback', ['field' => 'gender'])
+                                <select class="form-control" name="gender" required="required" id="input-gender" >
+                                   <option value="M">Male</option>
+                                   <option value="F">Female</option>
+                               </select>
+                               @include('alerts.feedback', ['field' => 'gender'])
+                           </div>
+
+                           <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-name">{{ __('Signature') }}</label>
+                                <input type="text" name="signature" id="input-signature" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Signature') }}" value="{{ old('Signature') }}" required autofocus>
+                                @include('alerts.feedback', ['field' => 'signature'])
                             </div>
                            
                             <div class="text-center">

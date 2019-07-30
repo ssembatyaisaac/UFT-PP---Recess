@@ -16,6 +16,7 @@ class CreateDistrictsTable extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->bigIncrements('id',2);
             $table->string('districtName',25);
+            $table->integer('NumberOfAgents',false)->nullable(true);
             $table->timestamps();
         });
     }

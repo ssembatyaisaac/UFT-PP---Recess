@@ -2,16 +2,35 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-mini">{{ _('BD') }}</a>
-            <a href="#" class="simple-text logo-normal">{{ _('UTF Dashboard') }}</a>
+            <a href="#" class="simple-text logo-normal">{{ _('U.T.F Political Party') }}</a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
                     <i class="tim-icons icon-chart-pie-36"></i>
-                    <p>{{ _('Dashboard') }}</p>
+                    <p>{{ _('Funds Per Month') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'dashboard') class="active " @endif>
+                    <a href="{{ route('home1') }}">
+                        <i class="tim-icons icon-chart-pie-36"></i>
+                        <p>{{ _('Funds Per Period') }}</p>
+                    </a>
+                </li>
+
+                    <li @if ($pageSlug == 'dashboard') class="active " @endif>
+                            <a href="{{ route('home2') }}">
+                                <i class="tim-icons icon-chart-pie-36"></i>
+                                <p>{{ _('Change in Enrollment') }}</p>
+                            </a>
+                        </li>
+                        <li @if ($pageSlug == 'dashboard') class="active " @endif>
+                            <a href="{{ route('home3') }}">
+                                <i class="tim-icons icon-chart-pie-36"></i>
+                                <p>{{ _('Well Wishers') }}</p>
+                            </a>
+                        </li>
+
             <li @if ($pageSlug == 'agents') class="active " @endif>
                 <a href="{{ route('agent.index') }}">
                     <i class="tim-icons icon-chart-pie-36"></i>
@@ -41,7 +60,8 @@
                         </li>
                     </ul>
                 </div>
-                
+
+
             </li>  --}}
             {{--  created for agents  --}}
 
@@ -67,7 +87,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>    
+                    </div>
 
             </li>
 
@@ -87,16 +107,48 @@
                                 </a>
                             </li>
                             <li @if ($pageSlug == 'agents') class="active " @endif>
+                                <a href="/recommend">
+                                    <i class="tim-icons icon-single-02"></i>
+                                    <p>{{ _('Recommended Members') }}</p>
+                                </a>
+                            </li>
+                            <li @if ($pageSlug == 'agents') class="active " @endif>
                                 <a href="{{ route('agent.create')  }}">
                                     <i class="tim-icons icon-bullet-list-67"></i>
                                     <p>{{ _('Register New') }}</p>
                                 </a>
                             </li>
                         </ul>
-                    </div>    
+                    </div>
 
             </li>
-            
+            <li>
+                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                    <i class="fab fa-laravel" ></i>
+                    <span class="nav-link-text" >{{ __('Funds') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+
+                <div class="collapse show" id="laravel-examples">
+                        <ul class="nav pl-4">
+                            <li @if ($pageSlug == 'districts') class="active " @endif>
+                                <a href="{{ route('pay.index')  }}">
+                                    <i class="tim-icons icon-align-center"></i>
+                                    <p>{{ _('Funds and Donors') }}</p>
+                                </a>
+                            </li>
+                            <li @if ($pageSlug == 'districts') class="active " @endif>
+                                <a href="{{ route('pay.create')  }}">
+                                    <i class="tim-icons icon-bullet-list-67"></i>
+                                    <p>{{ _('Register New') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                </div>
+
+
+            </li>
+
             {{--  <li @if ($pageSlug == 'icons') class="active " @endif>
                 <a href="{{ route('pages.icons') }}">
                     <i class="tim-icons icon-atom"></i>
