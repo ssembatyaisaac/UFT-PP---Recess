@@ -13,11 +13,14 @@
                 <div class="card-body">
                         @csrf
                         @method('put')
-                        @include('alerts.success')
+                        @include('alerts.success') 
 
                         <div class="form-group{{ $errors->has('fName') ? ' has-danger' : '' }}">
                                 <label>{{ _('First Name') }}</label>
-                                <input type="text" name="fName" class="form-control{{ $errors->has('fName') ? ' is-invalid' : '' }}" placeholder="{{ _('First Name') }}">
+                                <input type="text" name="fName" er@update',$agent->id] ,autocomplete="off">  --}}
+                                @foreach($agents as $agent)
+                                    <form method="post" action="{{ route('agent.update',$agent->id) }}" autocomplete="off">
+                                <div class="card-body">class="form-control{{ $errors->has('fName') ? ' is-invalid' : '' }}" placeholder="{{ _('First Name') }}">
                                 @include('alerts.feedback', ['field' => 'fName'])
                         </div>
 
@@ -26,16 +29,6 @@
                                 <input type="text" name="lName" class="form-control{{ $errors->has('lName') ? ' is-invalid' : '' }}" placeholder="{{ _('Last Name') }}">
                                 @include('alerts.feedback', ['field' => 'lName'])
                         </div>
-<<<<<<< HEAD
-
-                        <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
-                            <label>{{ _('Gender') }}</label>
-                            <input type="text" name="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" placeholder="{{ _('Gender') }}">
-                            @include('alerts.feedback', ['field' => 'gender'])
-                        </div>
-
-
-=======
                 
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
@@ -53,7 +46,6 @@
                             </div>   
                         
                        
->>>>>>> 8dcc7381ee94e949b5cab0421ba37c1083536ae6
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>

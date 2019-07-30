@@ -37,7 +37,7 @@
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        {{--  @if (auth()->agent()->id != $agent->id)--}}
+                                                        {{--  @if (auth()->agent()->id != $agent->id)
                                                             <form action="{{ route('district.destroy', $district->id) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
