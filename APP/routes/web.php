@@ -40,15 +40,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::resource('agent','AgentsController');
-<<<<<<< HEAD
-	Route::resource('district','DistrictsController');
 	Route::resource('Hierachy','HierachyController');
-
-=======
     Route::resource('district','DistrictsController');
     Route::resource('rec','recommendcontroller');
     Route::resource('pay','PaymentController');
->>>>>>> 0dbb97b642c50f8d1aac5b254a3485af3a4366cb
 });
 
  Route::get('/recommend','AgentsController@recommender');

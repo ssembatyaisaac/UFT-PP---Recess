@@ -14,16 +14,10 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-      $districts =DB::select('select * from districts');
-      return view('districts.index')->with('districts',$districts);
-    }
-=======
       $districts =DB::select('select * from districts');  
       return view('districts.index')->with('districts',$districts);
      
      }
->>>>>>> 0dbb97b642c50f8d1aac5b254a3485af3a4366cb
 
     /**
      * Show the form for creating a new resource.
