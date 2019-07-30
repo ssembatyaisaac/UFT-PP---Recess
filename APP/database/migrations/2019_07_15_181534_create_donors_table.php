@@ -18,6 +18,8 @@ class CreateDonorsTable extends Migration
             $table->string('fName',25);
             $table->string('lName',25);
             $table->char('gender',1);
+            $table->integer('amountPaid',false,false);
+            $table->date('dateOfPayment');
             $table->timestamps();
         });
     }

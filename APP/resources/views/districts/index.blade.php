@@ -33,6 +33,7 @@
                                                   <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
+                                                        
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                         {{--  @if (auth()->agent()->id != $agent->id)
@@ -47,6 +48,7 @@
                                                             </form>  
                                                         @else--}}
                                                             <a class="dropdown-item" href="/district/{{$district->id}}/edit">{{ __('Edit') }}</a>
+                                                            <a class="dropdown-item" href="/Hierachy/{{$district->id}}show">{{ __('View Hierachy') }}</a>
                                                        {{--  @endif  --}}
                                                     </div>
                                                 </div>  

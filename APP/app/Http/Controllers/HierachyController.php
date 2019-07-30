@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Hierachy;
 
-class DistrictsController extends Controller
+class HierachyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,9 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-      $districts =DB::select('select * from districts');
-      return view('districts.index')->with('districts',$districts);
+        //
+        $show =DB::select('select * from agents');
+       return view('hierachy.index')->with('show',$show);//->with('hierachy', $hierachy);
     }
 
     /**
@@ -26,7 +28,6 @@ class DistrictsController extends Controller
     public function create()
     {
         //
-        return view('districts.create');
     }
 
     /**
@@ -37,12 +38,8 @@ class DistrictsController extends Controller
      */
     public function store(Request $request)
     {
+
         //
-        $districtName=$request->input('districtName');
-        
-        $data=array('districtName'=>$districtName);
-        DB::table('districts')->insert($data);
-       return redirect()->route('district.index')->withStatus('District registered successfully');
     }
 
     /**
@@ -53,9 +50,15 @@ class DistrictsController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $search = DB::select('select * from districts where id = ?',[$id]);
+        foreach($search as $search){
+        $ban = $search->id;
+        $aghead=DB::select('select * from agents where agentHeadID is NULL and districtID =?',[$ban]);
+        $agents=DB::select('select * from agents where agentHeadID is NOT NULL and districtID =?',[$ban]);
+        }
+        return view('hierachy.show')->with('aghead',$aghead)->with('agents',$agents);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -65,8 +68,6 @@ class DistrictsController extends Controller
     public function edit($id)
     {
         //
-        $districts = DB::select('select * from districts where id = ?', [$id]);
-        return view('districts.edit')->with('districts',$districts);
     }
 
     /**
@@ -79,13 +80,7 @@ class DistrictsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,[
-            'districtName'=>'required',
-           ]);
-        $districtName=$request->input('districtName');
-        DB::update('update districts set districtName= ? WHERE id = ?', [$districtName,$id]);
-        
-        return redirect()->route('district.index')->withStatus('District updated successfully');
+       
     }
 
     /**
@@ -98,4 +93,21 @@ class DistrictsController extends Controller
     {
         //
     }
-}
+
+
+    public function search (Request $request)
+    {
+        $name = $request->input('search');
+        $search = DB::select('select * from districts where districtName = ?',[$name]);
+        foreach($search as $search){
+        $ban = $search->id;
+        $aghead=DB::select('select * from agents where agentHeadID is NULL and districtID =?',[$ban]);
+        $agents=DB::select('select * from agents where agentHeadID is NOT NULL and districtID =?',[$ban]);
+        }
+        return view('hierachy.show')->with('aghead',$aghead)->with('agents',$agents);
+    
+        //
+    }
+  
+    }
+   
