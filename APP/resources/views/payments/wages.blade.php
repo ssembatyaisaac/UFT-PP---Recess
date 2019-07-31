@@ -5,6 +5,9 @@
         <div class="col-12">
             <div class="card card-chart">
                 <div class="card-header ">
+                        <div class="col-8">
+                                <h4 class="card-title">{{ __('Enter Month And Year Of Funds') }}</h4>
+                            </div>
                 </div>
             <form method="POST" action="{{route('wage.store')}}">
                 @csrf
