@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('rec','recommendcontroller');
     Route::resource('pay','PaymentController');
     Route::resource('members','MembersController');
+    Route::resource('wage','WagesController');
 });
 
  Route::get('/recommend','AgentsController@recommender');
@@ -54,6 +55,10 @@ Route::group(['middleware' => 'auth'], function () {
 
  Route::get('/members', function () {
     return view('members.index');
+});
+
+Route::get('/wages', function () {
+    return view('payments.wages');
 });
 
 

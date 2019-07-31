@@ -11,7 +11,7 @@
                             <h5 class="card-category">Percentage Change in Enrollment</h5>
                             <h2 class="card-title">Bar Graph</h2>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="card-body">
@@ -136,7 +136,7 @@ if($nov>0){
                     text:"Percentage Change in Enrollment"
                 },
                 axisX:{
-                    interval: 1
+                    interval: 10
                 },
                 axisY2:{
                     interlacedColor: "rgba(1,77,101,.2)",

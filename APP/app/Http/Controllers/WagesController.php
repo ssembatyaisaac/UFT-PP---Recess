@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
-class memberController extends Controller
+class WagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,15 @@ class memberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $month = $request->input('month');
+        $year = $request->input('year');
+
+        $wages = DB::select('SELECT agents.fName, agents.lName,
+        payments.amount, payments.month
+        from agents
+        LEFT JOIN payments on agents.id = payments.agentID where
+        MONTH(month) ='.$month.' && YEAR(month)='.$year);
+        return view('payments.show')->with('donors', $wages);
     }
 
     /**

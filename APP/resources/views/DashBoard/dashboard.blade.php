@@ -62,18 +62,7 @@
     $dec = 0;
 
 
-    $jan1 =0;
-    $feb1 = 0;
-    $mar1 = 0;
-    $apr1 = 0;
-    $may1 = 0;
-    $jun1 = 0;
-    $jul1 = 0;
-    $aug1 = 0;
-    $sept1 = 0;
-    $oct1 = 0;
-    $nov1 = 0;
-    $dec1 = 0;
+
     foreach($funds as $fund){
         if($fund->month==1){
         $jan = $jan+$fund->amountPaid;

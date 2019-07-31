@@ -6,7 +6,7 @@
             <div class="card card-chart">
                 <div class="card-header ">
                 </div>
-            <form method="POST" action="{{route('members.store')}}">
+            <form method="POST" action="{{route('wage.store')}}">
                 @csrf
                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                     <label class="form-control-label" for="input-name">{{ __('Month Of Enrollment') }}</label>
