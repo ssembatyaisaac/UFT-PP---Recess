@@ -5,7 +5,7 @@
             <a href="#" class="simple-text logo-normal">{{ _('U.T.F Political Party') }}</a>
         </div>
         <ul class="nav">
-            
+
             {{--  <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
@@ -76,12 +76,6 @@
                                 </a>
                             </li>
                             <li @if ($pageSlug == 'agents') class="active " @endif>
-                                <a href="/recommend">
-                                    <i class="tim-icons icon-single-02"></i>
-                                    <p>{{ _('Recommended Members') }}</p>
-                                </a>
-                            </li>
-                            <li @if ($pageSlug == 'agents') class="active " @endif>
                                 <a href="{{ route('agent.create')  }}">
                                     <i class="tim-icons icon-bullet-list-67"></i>
                                     <p>{{ _('Register New') }}</p>
@@ -104,6 +98,12 @@
                                 <a href="/members">
                                     <i class="tim-icons icon-single-02"></i>
                                     <p>{{ _('Members Enrolled') }}</p>
+                                </a>
+                            </li>
+                            <li @if ($pageSlug == 'agents') class="active " @endif>
+                                <a href="/recommend">
+                                    <i class="tim-icons icon-single-02"></i>
+                                    <p>{{ _('Recommended Members') }}</p>
                                 </a>
                             </li>
                         </ul>
@@ -132,6 +132,12 @@
                                     <p>{{ _('Register New') }}</p>
                                 </a>
                             </li>
+                            <li @if ($pageSlug == 'wages') class="active " @endif>
+                                <a href="/wages">
+                                    <i class="tim-icons icon-single-02"></i>
+                                    <p>{{ _('Wages') }}</p>
+                                </a>
+                            </li>
                             <li @if ($pageSlug == 'dashboard') class="active " @endif>
                                 <a href="{{ route('home') }}">
                                     <i class="tim-icons icon-chart-pie-36"></i>
@@ -144,7 +150,7 @@
                                         <p>{{ _('Funds Per Period') }}</p>
                                     </a>
                                 </li>
-                
+
                                     <li @if ($pageSlug == 'dashboard') class="active " @endif>
                                             <a href="{{ route('home2') }}">
                                                 <i class="tim-icons icon-single-02"></i>

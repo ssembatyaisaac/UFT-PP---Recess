@@ -11,7 +11,7 @@
                             <h5 class="card-category">Wellwishers Per Month</h5>
                             <h2 class="card-title">Line Graph</h2>
                         </div>
-                        
+
                     </div>
                 </div>
             <form method="POST" action="{{route('donor.store')}}">
@@ -55,10 +55,12 @@
     if(isset($donors)){
     $n = 0;
     $names = array();
-   $amount = array();
+    $amount = array();
+    $name = array();
 
   foreach($donors as $donor){
-   $names[$n] = $donor->donorName;
+   $names[$n] = $donor->fName;
+   $name[$n] = $donor->lName;
    $amount[$n] = $donor->amountPaid;
 
    $n++;
@@ -100,7 +102,7 @@
                     <?php
                     if(isset($donors)){
                     for($k=0; $k<sizeof($names); $k++){
-                    echo "{ y:". $amount[$k]. ", label:"."'".$names[$k]."'"."},";
+                    echo "{ y:". $amount[$k]. ", label:"."'".$names[$k]."  ".$name[$k]."'"."},";
                        }
                     }
                     ?>

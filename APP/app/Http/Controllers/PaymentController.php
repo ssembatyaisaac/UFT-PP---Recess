@@ -111,10 +111,22 @@ class PaymentController extends Controller
             $totalamount=$sum->amount;
         }
 
-        if ($totalamount<2000) {
-            return'NO payments to be made';
+        if ($totalamount<200) {
+            $sql=DB::select('SELECT * from agents');
+            foreach ($sql as $row) {
+                $agentID=$row->id;
+                $date=date('Y-m-d');
+                $data=array('agentID'=>$agentID,'amount'=>0,'month'=>$date);
+                DB::table('payments')->insert($data);
+            }
+            $sql=DB::select('SELECT * from admins');
+            foreach ($sql as $row) {
+                $adminID=$row->id;
+                $data=array('agentID'=>$adminID,'amount'=>0,'month'=>$date);
+                DB::table('payments')->insert($data);
+            }
         } else {
-            $payment=$totalamount-200000;
+            $payment=$totalamount-2000;
             $high = DB::select('SELECT * from (SELECT me.districtid, me.districtName, COUNT(us.agentID) as Enrollments FROM
             (select districts.id as districtid, districts.districtName,
             agents.id as agentid, agents.agentHeadID
@@ -134,6 +146,7 @@ class PaymentController extends Controller
             (SELECT * from members WHERE month(dateOfEnrollment)=month(current_date())
             && year(dateOfEnrollment)=year(current_date())) as us
             on me.agentid=us.agentID GROUP BY me.districtid, me.districtName) as ok)');
+
 
             foreach ($high as $row) {
                 $highid=$row->districtid;

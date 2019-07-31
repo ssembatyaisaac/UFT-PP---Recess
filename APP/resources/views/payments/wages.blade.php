@@ -6,10 +6,10 @@
             <div class="card card-chart">
                 <div class="card-header ">
                         <div class="col-8">
-                                <h4 class="card-title">{{ __('Enter Month and Year Enrollment') }}</h4>
+                                <h4 class="card-title">{{ __('Enter Month And Year Of Funds') }}</h4>
                             </div>
                 </div>
-            <form method="POST" action="{{route('members.store')}}">
+            <form method="POST" action="{{route('wage.store')}}">
                 @csrf
                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                     <label class="form-control-label" for="input-name">{{ __('Month Of Enrollment') }}</label>
