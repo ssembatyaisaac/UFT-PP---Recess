@@ -16,7 +16,7 @@
                             <thead class=" text-primary">
                                 <th scope="col">{{ __('Agents') }}</th>
                                 @foreach($agents as $agents)
-                                <td>{{ $agents->fName  }}</td>
+                                <td>{{ $agents->fName . "  ".$agents->lName  }}<br></td>
                             @endforeach
                             </thead>
                             <tbody>

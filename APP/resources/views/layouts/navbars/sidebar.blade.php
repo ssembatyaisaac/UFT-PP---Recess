@@ -106,6 +106,13 @@
                                     <p>{{ _('Recommended Members') }}</p>
                                 </a>
                             </li>
+
+                            <li @if ($pageSlug == 'dashboard') class="active " @endif>
+                                <a href="{{ route('home2') }}">
+                                    <i class="tim-icons icon-single-02"></i>
+                                    <p>{{ _('Change in Enrollment') }}</p>
+                                </a>
+                            </li>
                         </ul>
                 </div>
 
@@ -151,12 +158,6 @@
                                     </a>
                                 </li>
 
-                                    <li @if ($pageSlug == 'dashboard') class="active " @endif>
-                                            <a href="{{ route('home2') }}">
-                                                <i class="tim-icons icon-single-02"></i>
-                                                <p>{{ _('Change in Enrollment') }}</p>
-                                            </a>
-                                        </li>
                                         <li @if ($pageSlug == 'dashboard') class="active " @endif>
                                             <a href="{{ route('home3') }}">
                                                 <i class="tim-icons icon-single-02"></i>
