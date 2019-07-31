@@ -9,14 +9,16 @@
                             <thead class=" text-primary">
                             @foreach($aghead as $head)
                                 <th scope="col">{{ __('Agent Head') }}</th>
-                                <td>{{ $head->fName ."   ".$head->lName  }}</td>
+                                <tr><td>{{ $head->fName ."   ".$head->lName  }}</td></tr>
                                 @endforeach
                             </thead>
                          
                             <thead class=" text-primary">
                                 <th scope="col">{{ __('Agents') }}</th>
                                 @foreach($agents as $agents)
-                                <td>{{ $agents->fName . "  ".$agents->lName  }}<br></td>
+                                <tr>
+                                <td>{{ $agents->fName . "  ".$agents->lName  }}</td></tr>
+                                
                             @endforeach
                             </thead>
                             <tbody>
